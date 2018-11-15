@@ -1,0 +1,54 @@
+<section id="tweet-list-component" [hidden]="tweets.length == 0">
+    <table class="table table-hover" >
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Location</th>
+                <th scope="col" class="large">Tweet</th>
+                <th>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label [ngClass]="currentFilter == 'Display All Tweets' ? 'btn btn-primary active' : 'btn btn-primary'">
+                        <input type="radio" name="options" id="option1" (click)="filterChanged('ALL')">All
+                    </label>
+                    <label [ngClass]="currentFilter == 'Display Only Original Tweets' ? 'btn btn-primary active' : 'btn btn-primary'">
+                        <input type="radio" name="options" id="option2" (click)="filterChanged('ORIGINAL')">Original
+                    </label>
+                    <label [ngClass]="currentFilter == 'Display Only Retweets' ? 'btn btn-primary active' : 'btn btn-primary'">
+                        <input type="radio" name="options" id="option3" (click)="filterChanged('RETWEET')">Retweet
+                    </label>
+                </div>                       
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Would love to use the TweetFilterTypes, but could not get it to work -->
+            <ng-container *ngIf="currentFilter == 'Display All Tweets'">
+                <tr *ngFor="let tweet of tweets; let i = index"
+                    [ngClass]="i%2 == 0 ? 'table-primary' : 'table-light'"
+                    (click)="viewTweet(tweet.id)">
+                    <td>{{ tweet.user_screen_name }}</td>
+                    <td>{{ tweet.user_location }}</td>
+                    <td colspan="2" class="large">{{ tweet.text }}</td>
+                </tr>
+            </ng-container>
+            <ng-container *ngIf="currentFilter == 'Display Only Retweets'">
+                <tr *ngFor="let tweet of retweets; let i = index"
+                    [ngClass]="i%2 == 0 ? 'table-primary' : 'table-light'"
+                    (click)="viewTweet(tweet.id)">
+                    <td>{{ tweet.user_screen_name }}</td>
+                    <td>{{ tweet.user_location }}</td>
+                    <td colspan="2" class="large">{{ tweet.text }}</td>
+                </tr>
+            </ng-container>
+            <ng-container *ngIf="currentFilter == 'Display Only Original Tweets'">
+                <tr *ngFor="let tweet of originalTweets; let i = index"
+                    [ngClass]="i%2 == 0 ? 'table-primary' : 'table-light'"
+                    (click)="viewTweet(tweet.id)">
+                    <td>{{ tweet.user_screen_name }}</td>
+                    <td>{{ tweet.user_location }}</td>
+                    <td colspan="2" class="large">{{ tweet.text }}</td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</section>

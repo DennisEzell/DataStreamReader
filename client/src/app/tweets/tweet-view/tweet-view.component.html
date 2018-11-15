@@ -1,0 +1,38 @@
+<section id="view-container">
+    <section id="totals" [hidden]="tweets.length == 0">
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                All Tweets
+                <span class="badge badge-primary badge-pill">{{ tweets.length }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Original Tweets
+                <span class="badge badge-primary badge-pill">{{ originalTweets.length }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Retweets
+                <span class="badge badge-primary badge-pill">{{ retweets.length }}</span>
+            </li>
+        </ul>
+    </section>
+    <section id="card"  [hidden]="selectedTweet.id == 0">
+        <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+            <div class="card-header">{{ selectedTweet.user_screen_name }}</div>
+            <div class="card-body">
+                <h4 class="card-title">User Info:</h4>
+                <ul>
+                    <li><strong>Location:</strong>     {{ selectedTweet.user_location }}</li>
+                    <li><strong>Descrption:</strong>    {{selectedTweet.user_description }}</li>
+                </ul>
+                <h4 class="card-title">Tweet Info:</h4>
+                <ul>
+                    <li>Hashtags:</li>
+                    <ul>
+                        <li *ngFor="let tag of selectedTweet.hashtags">#{{tag}} </li>
+                    </ul>
+                </ul>
+                <p class="card-text">{{ selectedTweet.text }}</p>
+            </div>
+        </div>
+    </section>
+</section>

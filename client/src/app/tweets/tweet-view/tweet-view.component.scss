@@ -1,0 +1,20 @@
+section#view-container{
+    display: grid;
+    grid-template-rows: 30% 70%;
+    grid-template-areas: 
+        "totals"
+        "card";
+}
+
+section#card{
+    grid-area: card;
+    margin-left: 10em;
+    margin-top: 1em;
+}
+
+section#totals{
+    grid-area: totals;
+    margin-left: 10em;
+    margin-bottom: 1em;    
+    width: 21em;
+}

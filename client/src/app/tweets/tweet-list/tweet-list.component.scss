@@ -1,0 +1,31 @@
+table{
+    margin-left: 2em;    
+    border:solid #444 1px;
+    border-radius:6px;
+
+    thead{
+        tr{
+            display:block;             
+        }
+    }
+
+    tbody{
+        display:block;
+        max-height: 45em;
+        overflow:auto;//set tbody to auto
+
+        tr{
+            cursor: pointer;
+        }
+    }
+
+    th, td{
+        width:15em;//fixed width
+        &.large{
+            width: 35em
+        }
+    }
+}
+
+
+
